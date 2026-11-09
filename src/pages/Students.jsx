@@ -31,10 +31,10 @@ function Students() {
         <>
             <div>
                 {/* Page Header */}
-                <div className="flex justify-between items-start mb-8">
+                <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                        <h1 className="text-4xl font-bold text-slate-900">📚 Students</h1>
-                        <p className="text-slate-500 mt-2">Manage all your students in one place</p>
+                        <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">📚 Students</h1>
+                        <p className="mt-2 text-sm text-slate-500 sm:text-base">Manage all your students in one place</p>
                     </div>
 
                     <button
@@ -42,7 +42,7 @@ function Students() {
                             setEditStudent(null);
                             setIsOpen(true);
                         }}
-                        className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-semibold hover:scale-105"
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 px-5 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.01] hover:shadow-xl sm:w-auto"
                     >
                         <CgAdd className="text-xl" />
                         <span>Add Student</span>
@@ -50,26 +50,26 @@ function Students() {
                 </div>
 
                 {/* Search & Filter Bar */}
-                <div className="flex flex-col md:flex-row items-center gap-4 mb-8 bg-white p-5 rounded-2xl shadow-md border border-slate-100">
+                <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-slate-100 bg-white p-4 shadow-md sm:p-5 lg:flex-row lg:items-center">
                     {/* Search Box */}
-                    <div className="relative w-full md:w-96">
-                        <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg" />
+                    <div className="relative w-full lg:w-96">
+                        <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-lg text-slate-400" />
                         <input
                             type="text"
                             placeholder="Search by name, ID, email, grade..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder-slate-400"
+                            className="w-full rounded-lg border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm text-slate-700 placeholder-slate-400 transition focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
 
                     {/* Filter Dropdown */}
-                    <div className="relative w-full md:w-48">
-                        <FiFilter className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg" />
+                    <div className="relative w-full lg:w-48">
+                        <FiFilter className="absolute left-3 top-1/2 -translate-y-1/2 text-lg text-slate-400" />
                         <select
                             value={filter}
                             onChange={(e) => setFilter(e.target.value)}
-                            className="w-full appearance-none pl-10 pr-8 py-3 border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer transition"
+                            className="w-full appearance-none rounded-lg border border-slate-200 bg-white py-3 pl-10 pr-8 text-sm text-slate-700 transition focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="All">All Students</option>
                             <option value="Active">Active</option>
@@ -81,25 +81,25 @@ function Students() {
                     </div>
 
                     {/* Results Counter */}
-                    <div className="ml-auto text-slate-600 font-medium">
+                    <div className="text-sm font-medium text-slate-600 lg:ml-auto">
                         {filteredStudents.length} students found
                     </div>
                 </div>
 
                 {/* Table */}
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-100">
+                <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
                     <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead className="bg-gradient-to-r from-slate-50 to-blue-50 border-b border-slate-200">
-                                <tr className="text-left text-slate-700 font-bold text-sm">
-                                    <th className="p-5">ID</th>
-                                    <th className="p-5">Name</th>
-                                    <th className="p-5">Grade</th>
-                                    <th className="p-5">Email</th>
-                                    <th className="p-5">GPA</th>
-                                    <th className="p-5">Attendance</th>
-                                    <th className="p-5">Status</th>
-                                    <th className="p-5 text-center">Actions</th>
+                        <table className="min-w-[900px] w-full">
+                            <thead className="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-blue-50">
+                                <tr className="text-left text-sm font-bold text-slate-700">
+                                    <th className="p-3 sm:p-5">ID</th>
+                                    <th className="p-3 sm:p-5">Name</th>
+                                    <th className="p-3 sm:p-5">Grade</th>
+                                    <th className="p-3 sm:p-5">Email</th>
+                                    <th className="p-3 sm:p-5">GPA</th>
+                                    <th className="p-3 sm:p-5">Attendance</th>
+                                    <th className="p-3 sm:p-5">Status</th>
+                                    <th className="p-3 text-center sm:p-5">Actions</th>
                                 </tr>
                             </thead>
 
@@ -107,31 +107,31 @@ function Students() {
                                 {filteredStudents.length > 0 ? (
                                     filteredStudents.map((student, idx) => (
                                         <tr key={student.id} className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 transition-colors duration-200">
-                                            <td className="p-5 font-semibold text-slate-700">{student.id}</td>
-                                            <td className="p-5 font-medium text-slate-900">
+                                            <td className="p-3 font-semibold text-slate-700 sm:p-5">{student.id}</td>
+                                            <td className="p-3 font-medium text-slate-900 sm:p-5">
                                                 {student.firstName} {student.lastName}
                                             </td>
-                                            <td className="p-5 text-slate-600">{student.grade}</td>
-                                            <td className="p-5 text-slate-600 text-sm">{student.email}</td>
-                                            <td className="p-5">
-                                                <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                            <td className="p-3 text-slate-600 sm:p-5">{student.grade}</td>
+                                            <td className="p-3 text-sm text-slate-600 sm:p-5">{student.email}</td>
+                                            <td className="p-3 sm:p-5">
+                                                <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-semibold text-purple-700">
                                                     {student.gpa}
                                                 </span>
                                             </td>
-                                            <td className="p-5">
+                                            <td className="p-3 sm:p-5">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-16 bg-slate-200 rounded-full h-2 overflow-hidden">
+                                                    <div className="h-2 w-16 overflow-hidden rounded-full bg-slate-200">
                                                         <div 
                                                             className="h-full bg-gradient-to-r from-green-500 to-emerald-500" 
                                                             style={{width: `${student.attendance}%`}}
                                                         ></div>
                                                     </div>
-                                                    <span className="text-sm font-semibold text-slate-700 w-8">{student.attendance}%</span>
+                                                    <span className="w-8 text-sm font-semibold text-slate-700">{student.attendance}%</span>
                                                 </div>
                                             </td>
-                                            <td className="p-5">
+                                            <td className="p-3 sm:p-5">
                                                 <span
-                                                    className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide ${
+                                                    className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide ${
                                                         student.status === "Active"
                                                             ? "bg-green-100 text-green-700"
                                                             : "bg-orange-100 text-orange-700"
@@ -140,11 +140,11 @@ function Students() {
                                                     {student.status}
                                                 </span>
                                             </td>
-                                            <td className="p-5">
+                                            <td className="p-3 sm:p-5">
                                                 <div className="flex items-center justify-center gap-2">
                                                     <button 
                                                         onClick={() => navigate(`/students/${student.id}`)}
-                                                        className="bg-cyan-500 hover:bg-cyan-600 text-white p-2 rounded-lg transition-all duration-200 hover:shadow-lg"
+                                                        className="rounded-lg bg-cyan-500 p-2 text-white transition-all duration-200 hover:bg-cyan-600 hover:shadow-lg"
                                                         title="View Details"
                                                     >
                                                         <MdVisibility className="text-lg" />
@@ -155,7 +155,7 @@ function Students() {
                                                             setEditStudent(student);
                                                             setIsOpen(true);
                                                         }}
-                                                        className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition-all duration-200 hover:shadow-lg"
+                                                        className="rounded-lg bg-blue-500 p-2 text-white transition-all duration-200 hover:bg-blue-600 hover:shadow-lg"
                                                         title="Edit Student"
                                                     >
                                                         <MdEdit className="text-lg" />
@@ -167,7 +167,7 @@ function Students() {
                                                                 deleteStudent(student.id);
                                                             }
                                                         }}
-                                                        className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition-all duration-200 hover:shadow-lg"
+                                                        className="rounded-lg bg-red-500 p-2 text-white transition-all duration-200 hover:bg-red-600 hover:shadow-lg"
                                                         title="Delete Student"
                                                     >
                                                         <MdDelete className="text-lg" />
